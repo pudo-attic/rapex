@@ -1,0 +1,33 @@
+<html>
+  <head>
+     <title>RAPEX</title>
+  </head>
+  <body>
+
+    <script src="js/miso.ds.deps.min.0.1.3.js"></script>
+    <script>
+    var ds = new Miso.Dataset({
+      url : "data/rapex.csv",
+      delimiter : ",",
+      columns : [
+      ]
+    });
+
+    ds.fetch({
+      success: function() {
+        //Select rows in the 80's & find their average
+        var uraniumInThe80s = this.where({ 
+          rows : function(row) {
+            return (row.year >= moment([1980]) && 
+                    row.year < moment([1990]));
+          }
+        }).mean("value");
+
+        log("80's Average:", uraniumInThe80s);
+        log("Total Average:", ds.mean('value') );
+      }
+    });
+
+    </script>
+  </body>
+</html>
