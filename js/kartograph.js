@@ -1,3 +1,4 @@
+
 /*!
  *
  *    kartograph - a svg mapping library 
@@ -851,7 +852,7 @@
   LonLat = (function() {
 
     /*
-    	represents a Point
+      represents a Point
     */
 
     function LonLat(lon, lat, alt) {
@@ -1256,7 +1257,7 @@
   Path = (function() {
 
     /*
-    	represents complex polygons (aka multi-polygons)
+      represents complex polygons (aka multi-polygons)
     */
 
     function Path(type, contours, closed) {
@@ -1414,7 +1415,7 @@
 
   Path.fromSVG = function(path) {
     /*
-    	loads a path from a SVG path string
+      loads a path from a SVG path string
     */
     var closed, cmd, contour, contours, cx, cy, path_data, path_str, r, res, sep, type, _i, _len;
     contours = [];
@@ -1461,7 +1462,7 @@
   Line = (function() {
 
     /*
-    	represents simple lines
+      represents simple lines
     */
 
     function Line(points) {
@@ -3057,7 +3058,7 @@
   View = (function() {
 
     /*
-    	2D coordinate transfomation
+      2D coordinate transfomation
     */
 
     function View(bbox, width, height, padding, halign, valign) {
@@ -3133,7 +3134,7 @@
 
   View.fromXML = function(xml) {
     /*
-    	constructs a view from XML
+      constructs a view from XML
     */
     var bbox, bbox_xml, h, pad, w;
     w = Number(xml.getAttribute('w'));
@@ -4923,14 +4924,14 @@ drawStackedBars = function (cx, cy, w, h, values, labels, colors, stroke) {
     __extends(StackedBarChart, kartograph.Symbol);
 
     /*
-    	usage:
-    	new SymbolMap({
-    		map: map,
-    		radius: 10
-    		data: [25,75],
-    		colors: ['red', 'blue'],
-    		titles: ['red pie', 'blue pie']
-    	})
+      usage:
+      new SymbolMap({
+        map: map,
+        radius: 10
+        data: [25,75],
+        colors: ['red', 'blue'],
+        titles: ['red pie', 'blue pie']
+      })
     */
 
     function StackedBarChart(opts) {
