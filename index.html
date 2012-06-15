@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
   <script src="js/chroma.min.js"></script>
-  <script src="js/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="http://underscorejs.org/underscore-min.js"></script>
   <script src="js/kartograph.js"></script>
   <script src="js/raphael.js"></script>
@@ -25,10 +25,21 @@
 
       <div class="row">
         <div class="span8">
-          <div id="map">
+          <div id="map"></div>
         </div>
         <div class="span4">
-          <div id="nav">
+          <div class="well">
+            <ul class="nav nav-list" id="nav">
+              <li class="nav-header">
+                Categories
+              </li>
+            </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span12">
+          <div id="list"></div>
         </div>
       </div>
     </div>
