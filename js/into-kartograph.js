@@ -1,40 +1,52 @@
 var map;
 
-function updateMap(json){
-
+function updateKartograph(data, selectedCountry, callback){
 	//defines the Kartograph map
-	map = $K.map('#map', 520, 620);
+	map = $K.map('#map', 800, 520);
 
-	//loads the SVG
-	map.loadMap('assets/map-fr.svg', function() {
-		map.loadStyles('css/map_styles.css', function() {
-			map.addLayer({
-				id: 'countries',
-				key: 'id'
-			});
-			colorizeMap(json);
-		})
-	});
-}
-
-function colorizeMap(json){
-
-	var prop = "datapoint",
+	var prop = "count",
 		scale = "q";
 
 	colorscale = new chroma.ColorScale({
-		colors: ['#fafafa','#0083C9'],
-		limits: chroma.limits(json, scale, 2, prop)
+		colors: ['#FFEFEE','#BE3526'],
+		limits: [0,500]
 	});
 
-	map.choropleth({
-		data: json,
-		key: 'id',
-		colors: function(d) {
-			if (d == null) return '#fff';
-			return colorscale.getColor(d[prop]);
-		},
-		duration: 0
-	});
+	//loads the SVG
+	map.loadMap('img/eu_gka.svg', function() {
+		map.loadStyles('css/map_styles.css', function() {
+			map.addLayer({
+				id: 'nuts0',
+				key: 'nuts-id'
+			});
 
+			map.choropleth({
+				data: function(d) {
+					return d['nuts-id'];
+				},
+				key: 'id',
+				colors: function(d) {
+					if (d === null) return '#fff';
+					console.log(d);
+					console.log(selectedCountry);
+					if (d === selectedCountry)
+						return '#005580';
+					console.log("FOO")
+					var f = _.find(data, function(e) {
+						if (e.id == d) {
+							return true;
+						}
+						return false;
+					});
+					if (f===undefined) return '#fff';
+					return colorscale.getColor(f.count);
+				},
+				duration: 20
+			});
+
+			map.onLayerEvent('click', function(d) {
+				callback(d);
+			});
+		});
+	});
 }
